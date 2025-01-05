@@ -3,10 +3,10 @@ import { CiSearch } from "react-icons/ci";
 import { BsShopWindow } from "react-icons/bs";
 import { PiShoppingCartThin } from "react-icons/pi";
 import { MdMenu } from "react-icons/md";
-import { NavbarMenu } from "@/mockData/data";
 import ResponsiveMenu from "./ResponsiveMenu";
 import { AppContext } from "@/context/AppContext";
 import Login from "../Login/Login"; // Import LoginModal
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const context = useContext(AppContext);
@@ -26,22 +26,30 @@ const Navbar = () => {
           <div className="text-2xl flex items-center gap-2 font-bold uppercase">
             <BsShopWindow />
             <p>Virtual</p>
-            <p className="text-secondary2">Market</p>
+            <p className="text-secondary2">Shop</p>
           </div>
 
           {/* Menu Section */}
           <div className="hidden md:block">
             <ul className="flex items-center gap-6 text-gray-600">
-              {NavbarMenu.map((item) => (
-                <li key={item.id}>
-                  <a
-                    href={item.link}
-                    className="inline-block py-1 px-3 hover:text-primary2 font-semibold"
-                  >
-                    {item.title}
-                  </a>
+              <NavLink to="/">
+                <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
+                  HOME
                 </li>
-              ))}
+                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
+              </NavLink>
+              <NavLink to="/market">
+                <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
+                  All Market
+                </li>
+                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
+              </NavLink>
+              <NavLink to="/">
+                <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
+                  HOME
+                </li>
+                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
+              </NavLink>
             </ul>
           </div>
 

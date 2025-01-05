@@ -3,7 +3,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { AppContext } from '../../context/AppContext';
-import { assets } from '../../assets/assets';
+import { assets } from '../../../public/assets/assets';
 
 const AuthComponent = ({ onClose }) => {
   const [state, setState] = useState('Login'); // 'Login', 'Sign Up', 'Forgot Password', 'OTP Verification', 'Set New Password'
