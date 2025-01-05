@@ -7,6 +7,7 @@ import ResponsiveMenu from "./ResponsiveMenu";
 import { AppContext } from "@/context/AppContext";
 import Login from "../Login/Login"; // Import LoginModal
 import { NavLink } from "react-router-dom";
+import { IoNotificationsOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const context = useContext(AppContext);
@@ -23,11 +24,11 @@ const Navbar = () => {
       <nav>
         <div className="container flex justify-between items-center py-8 border-b">
           {/* Logo Section */}
-          <div className="text-2xl flex items-center gap-2 font-bold uppercase">
+          <NavLink to='/' className="text-2xl flex items-center gap-2 font-bold uppercase">
             <BsShopWindow />
             <p>Virtual</p>
             <p className="text-secondary2">Shop</p>
-          </div>
+          </NavLink>
 
           {/* Menu Section */}
           <div className="hidden md:block">
@@ -44,9 +45,15 @@ const Navbar = () => {
                 </li>
                 {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
               </NavLink>
-              <NavLink to="/">
+              <NavLink to="/seller">
                 <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
-                  HOME
+                  Seller
+                </li>
+                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
+              </NavLink>
+              <NavLink to="/about">
+                <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
+                  About
                 </li>
                 {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
               </NavLink>
@@ -60,6 +67,12 @@ const Navbar = () => {
               className="text-2xl hover:bg-primary2 hover:text-white rounded-full p-2 duration-200"
             >
               <CiSearch />
+            </button>
+            <button
+              aria-label="Search"
+              className="text-2xl hover:bg-primary2 hover:text-white rounded-full p-2 duration-200"
+            >
+              <IoNotificationsOutline />
             </button>
             <button
               aria-label="Cart"

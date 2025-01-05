@@ -1,25 +1,20 @@
-import React, { useContext, useState } from "react";
-import { CiSearch } from "react-icons/ci";
-import { BsShopWindow } from "react-icons/bs";
-import { PiShoppingCartThin } from "react-icons/pi";
-import { MdMenu } from "react-icons/md";
+import React, { useState } from "react";
+import { MdDashboard, MdMenu } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-
   const [open, setOpen] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <>
-      <nav>
-        <div className="container flex justify-between items-center py-8 border-b">
+      <nav className="shadow-md bg-white">
+        <div className="flex justify-between items-center p-2 m-2">
           {/* Logo Section */}
-          <div className="text-2xl flex items-center gap-2 font-bold uppercase">
-            <BsShopWindow />
-            <p>Virtual</p>
-            <p className="text-secondary2">Shop</p>
-          </div>
+          <NavLink to="/" className="text-2xl flex items-center gap-2 font-bold uppercase">
+            <MdDashboard />
+            <p className="text-secondary2">Seller</p>
+            <p>Dashboard</p>
+          </NavLink>
 
           {/* Menu Section */}
           <div className="hidden md:block">
@@ -28,19 +23,16 @@ const Navbar = () => {
                 <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
                   HOME
                 </li>
-                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
               </NavLink>
-              <NavLink to="/market">
+              <NavLink to="/about">
                 <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
-                  All Market
+                  About
                 </li>
-                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
               </NavLink>
               <NavLink to="/">
                 <li className="inline-block py-1 px-3 hover:text-primary2 font-semibold">
-                  HOME
+                  Contact
                 </li>
-                {/* <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'/> */}
               </NavLink>
             </ul>
           </div>
@@ -48,30 +40,17 @@ const Navbar = () => {
           {/* Icons Section */}
           <div className="flex items-center gap-4">
             <button
-              aria-label="Search"
-              className="text-2xl hover:bg-primary2 hover:text-white rounded-full p-2 duration-200"
-            >
-              <CiSearch />
-            </button>
-            <button
-              aria-label="Cart"
-              className="text-2xl hover:bg-primary2 hover:text-white rounded-full p-2 duration-200"
-            >
-              <PiShoppingCartThin />
-            </button>
-            <button
-              onClick={() => window.open("http://localhost:5174/", "_blank")}
               className="border-2 hover:border-primary2 text-white bg-primary2 font-semibold rounded-md px-6 py-2 duration-200 hidden md:block"
             >
-              Business
+              Become a Seller
             </button>
 
-            <button
-              onClick={() => setShowLoginModal(true)}
+            <NavLink
+              to="/login"
               className="hover:bg-primary2 text-primary2 font-semibold hover:text-white rounded-md border-2 border-primary2 px-6 py-2 duration-200 hidden md:block"
             >
-              Login
-            </button>
+              Login Market
+            </NavLink>
           </div>
 
           {/* Mobile Hamburger Menu */}
@@ -89,8 +68,21 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Menu */}
-
-      {/* Login Modal */}
+      {open && (
+        <div className="bg-white shadow-md md:hidden">
+          <ul className="flex flex-col items-center gap-4 text-gray-600 p-4">
+            <NavLink to="/">
+              <li className="py-2 px-4 hover:text-primary2 font-semibold">HOME</li>
+            </NavLink>
+            <NavLink to="/about">
+              <li className="py-2 px-4 hover:text-primary2 font-semibold">About</li>
+            </NavLink>
+            <NavLink to="/">
+              <li className="py-2 px-4 hover:text-primary2 font-semibold">Contact</li>
+            </NavLink>
+          </ul>
+        </div>
+      )}
     </>
   );
 };
