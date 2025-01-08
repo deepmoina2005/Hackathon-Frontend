@@ -1,4 +1,6 @@
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import Footer from "@/mainComponents/Footer";
+import Navbar from "@/mainComponents/Navbar/Navbar";
 import React, { useState, useEffect } from "react";
 
 const Home = () => {
@@ -22,7 +24,9 @@ const Home = () => {
   }, [images.length, isPaused]);
 
   return (
-    <div> hello
+    <div>
+      <Navbar/>
+    <div className="">
       {/* Carousel */}
       <div className="bg-gray-100 p-2">
         <div className="max-w-xl relative overflow-hidden">
@@ -83,6 +87,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 };

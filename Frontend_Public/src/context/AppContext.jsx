@@ -1,53 +1,53 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { data } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export const AppContext = createContext()
 
-const AppContextProvider = (props)=> {
-  const [user, setUser] = useState(null);
-  const [showLogin, setShowLogin] = useState(false);
-  const [token, setToken] = useState(localStorage.getItem('token'))
+export const AppContextProvider = (props)=> {
 
-  const [credit, setCredit] = useState(false)
+  axios.defaults.withCredentials = true;
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const [isLoggedin, setIsLoggedin] = useState(false)
+  const [userData, setUserData] = useState(false)
 
-  const navigate = useNavigate()
-
-  const loadCreditsData = async () => {
+  const getAuthState = async ()=> {
     try {
-      const {data} = await axios.get(backendUrl + '/api/user/credits', {headers: {token}})
-
+      const {data } = await axios.get(backendUrl + '/api/auth/is-auth')
       if (data.success) {
-        setCredit(data.credits)
-        setUser(data.user)
+        setIsLoggedin(true)
+        getUserData()
       }
     } catch (error) {
-      console.log(error)
       toast.error(error.message)
     }
   }
 
-  const logout = ()=> {
-    localStorage.removeItem('token')
-    setToken('')
-      setUser(null)
-  }
-  useEffect(()=> {
-    if (token) {
-      loadCreditsData()
+  const getUserData = async ()=> {
+    try {
+      const {data} = await axios.get(backendUrl + '/api/user/data')
+      data.success ? setUserData(data.userData) : toast.error(data.message)
+    } catch (error) {
+      toast.error(error.message)
     }
-  }, [token])
-  const value= {
-    user, setUser, showLogin, setShowLogin, backendUrl, token, setToken, credit, setCredit, loadCreditsData, logout,
   }
+
+  useEffect(()=>{
+    getAuthState();
+  },[])
+
+  const value = {
+    backendUrl,
+    isLoggedin, setIsLoggedin,
+    userData,setUserData,
+    getUserData
+  }
+
   return (
     <AppContext.Provider value={value}>
-        {props.children}
+      {props.children}
     </AppContext.Provider>
   )
 }
-
-export default AppContextProvider

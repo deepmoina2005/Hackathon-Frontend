@@ -9,18 +9,18 @@ module.exports = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
-			container: {
-				center: true,
-				padding: {
-					DEFAULT: "1rem",
-					sm: "2rem",
-					lg: "4rem",
-					xl: "5rem",
-					"2xl": "6rem"
-				}
-			},
+			// container: {
+			// 	center: true,
+			// 	padding: {
+			// 		DEFAULT: "1rem",
+			// 		sm: "2rem",
+			// 		lg: "4rem",
+			// 		xl: "5rem",
+			// 		"2xl": "6rem"
+			// 	}
+			// },
   		colors: {
-				primary2: "#ff8901",
+				primary2: "#333A5C",
 				secondary2: "#fb923c",
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

@@ -1,8 +1,13 @@
+import Footer from '@/mainComponents/Footer'
+import Navbar from '@/mainComponents/Navbar/Navbar'
 import React from 'react'
 
 const Market = () => {
   return (
-    <div>Market</div>
+    <div>
+      <Navbar/>
+      <Footer/>
+    </div>
   )
 }
 
